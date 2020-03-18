@@ -1,0 +1,56 @@
+.gameBg{
+	position: relative;
+	top: 20px;
+	left: 8%;
+	width: 290px;
+	height: 550px;
+	
+	background-color: black;
+}
+
+.player{
+	position: relative;
+	top: 20px;
+	left: 144px;
+	width: 18px;
+	height: 18px;
+	background-color: red;
+}
+
+.stairStyle{
+	width: 60px;
+	height: 15px;
+	background-color: #46A3FF;
+}
+
+.stair1{
+	position: relative;
+	top: 40px;
+	left: 14px;
+}
+
+.stair2{
+	position: relative;
+	top: 80px;
+	left: 14px;
+}
+
+.stair3{
+	position: relative;
+	top: 120px;
+	left: 14px;
+}
+
+.stair4{
+	position: relative;
+	top: 160px;
+	left: 14px;
+}
+
+.stair5{
+	position: relative;
+	top: 200px;
+	left: 14px;
+}
+
+
