@@ -2,10 +2,11 @@ let nowPositionX = 144;
 let isInScreenLeft = false;
 let isInScreenRight = false;
 
+
 const moveDistance = 16;
 
 
-// ºÊ´ú¨Ï¥ÎªÌ«ö¤U37©Î¬O39¡A¨Ã¥B¨M©wxªº¦ì¸m
+// ç›£æ¸¬ä½¿ç”¨è€…æŒ‰ä¸‹37æˆ–æ˜¯39ï¼Œä¸¦ä¸”æ±ºå®šxçš„ä½ç½®
 document.onkeydown = () => {
 	let keycode = event.which || event.keyCode;
 	
@@ -13,17 +14,19 @@ document.onkeydown = () => {
 	
 	checkInScreen();
 		if(keycode == 37 && !isInScreenLeft){
+			player.innerHTML = "â†";
 			nowPositionX -= moveDistance;
 			isInScreenRight = false;
 		}
 		if(keycode == 39 && !isInScreenRight){
+			player.innerHTML = "â†’";
 			nowPositionX += moveDistance;
 			isInScreenLeft = false;
 		}
 	player.style.left = ` ${nowPositionX}px `;
 }
 
-// ºÊ´ú¬O§_¦³¶W¥Xµe­±
+// ç›£æ¸¬æ˜¯å¦æœ‰è¶…å‡ºç•«é¢
 let checkInScreen = () => {
 	// console.log(nowPositionX);
 	
@@ -33,19 +36,10 @@ let checkInScreen = () => {
 	if(nowPositionX >= 265){
 		isInScreenRight = true;
 	}
-} 
+}
 
 
-
-
-
-
-
-// $(document).ready(function(){
-	// setStairPositionY();
-// })
-
-// ¶}©l¹ê§@¼Ó±è
+// é–‹å§‹å¯¦ä½œæ¨“æ¢¯
 let stairPositionY = [];
 let stairPositionX = [];
 const st1 = document.getElementById("st1");
@@ -54,17 +48,12 @@ const st3 = document.getElementById("st3");
 const st4 = document.getElementById("st4");
 const st5 = document.getElementById("st5");
 
-const setStairPositionY = () => {
+let setStairPositionY = () => {
 	for(let i=0; i<5; i++){
 		stairPositionX[i] = Math.ceil(Math.random() * 150) + 20;
-		stairPositionY[i] = Math.ceil(Math.random() * (15*(i+1)))  + 60*(i+1);
+		stairPositionY[i] = Math.ceil(84*(i+1));
 		console.log(`${stairPositionY[i]}`)
 	}
-	
-	
-	// °ª«×¬O500   ¶¡¶Z   °_©l­È
-
-	
 	
 	st1.style.top = `${stairPositionY[0]}px`;
 	st2.style.top = `${stairPositionY[1]}px`;
@@ -75,7 +64,45 @@ const setStairPositionY = () => {
 	st2.style.left = `${stairPositionX[1]}px`;
 	st3.style.left = `${stairPositionX[2]}px`;
 	st4.style.left = `${stairPositionX[3]}px`;
-	st5.style.left = `${stairPositionX[4]}px`; 
-	
+	st5.style.left = `${stairPositionX[4]}px`;
 }
 setStairPositionY();
+setStairPositionY = null;
+
+
+const stairUp = () => {
+	setInterval( () => {
+		for(let i = 0; i<5; i++){
+			stairPositionY[i] -= 12;
+			
+			let playerPositionY = player.offsetTop;
+			let playerPositionX = player.offsetLeft;
+			
+			if(stairPositionY[i] === player.offsetTop){
+				const player = document.getElementById("player");
+				playerPositionY -= 12;
+				player.style.top = `${playerPositionY}px`;
+				
+			}
+			
+			if(stairPositionY[i] < 0){
+				stairPositionY[i] = 540;
+				stairPositionX[i] = Math.ceil(Math.random() * 150) + 20;
+			}
+			
+		}
+		
+		st1.style.top = `${stairPositionY[0]}px`;
+		st2.style.top = `${stairPositionY[1]}px`;
+		st3.style.top = `${stairPositionY[2]}px`;
+		st4.style.top = `${stairPositionY[3]}px`;
+		st5.style.top = `${stairPositionY[4]}px`;
+		st1.style.left = `${stairPositionX[0]}px`;
+		st2.style.left = `${stairPositionX[1]}px`;
+		st3.style.left = `${stairPositionX[2]}px`;
+		st4.style.left = `${stairPositionX[3]}px`;
+		st5.style.left = `${stairPositionX[4]}px`; 
+	}, 200)
+}
+
+stairUp();
